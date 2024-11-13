@@ -9,6 +9,7 @@ runtime: shiny
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(CPTtools)
+library(arm)
 ```
 
 ## Two parameter model
@@ -54,7 +55,7 @@ $\Phi(x) \approx \text{logit}^{-1} (1.7x)$.
 ```{r ogive}
 #| height: 200
 curve(pnorm(x),xlim=c(-3.25,3.25),main="Normal ogive (solid) versus inverse logit (dashed)")
-curve(invlogit(1.7*x),add=TRUE)
+curve(invlogit(1.7*x),add=TRUE,lty="dashed",col=3)
 
 ```
 So the two parameter logistic (2PL) form is:
@@ -78,8 +79,9 @@ $\alpha_j=a_j$ and $\beta_j=-a_jb_j$.  In particular, the R package
 
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 500
+#| viewerHeight: 1000
 library(shiny)
+library(arm)
 ui <- fluidPage(
 inputPanel(
   sliderInput("difficulty2", label = "Difficulty",
@@ -97,7 +99,7 @@ inputPanel(
 server <- function (input,output) {
   output$ICC <- renderPlot({
 	if (input$fun=="Logistic") {
-		fun <- function (theta) {invlogit(1.7*theta)}
+		fun <- function (theta) {arm::invlogit(1.7*theta)}
 	} else {
 		fun <- pnorm
 	}

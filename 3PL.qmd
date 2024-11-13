@@ -20,8 +20,9 @@ The parameter $c_j$ is called the guessing parameter.
 
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 500
+#| viewerHeight: 1000
 library(shiny)
+library(arm)
 ui <- fluidPage(
 inputPanel(
   sliderInput("difficulty3", label = "Difficulty",
@@ -47,8 +48,8 @@ info <- function (x,a,b,c,D=1.7) {
 }
 
 output$ICC <- renderPlot({
-   a <- as.numeric(input$difficulty3)
-   b <- as.numeric(input$discrimination3)
+   b <- as.numeric(input$difficulty3)
+   a <- as.numeric(input$discrimination3)
    c <- as.numeric(input$guessing3)
    curve(irt3pl(x,a,b,c),xlim=c(-3.25,3.25),
    ylab="Probability of Success", xlab="Ability",
@@ -60,12 +61,12 @@ output$ICC <- renderPlot({
  abline(h=c,lty="dotted")
 })
    output$Info <- renderPlot({
-   a <- as.numeric(input$difficulty3)
-   b <- as.numeric(input$discrimination3)
+   b <- as.numeric(input$difficulty3)
+   a <- as.numeric(input$discrimination3)
    c <- as.numeric(input$guessing3)
-   curve(info(x,a,b,c)),xlim=c(-3.25,3.25),
+   curve(info(x,a,b,c),xlim=c(-3.25,3.25),
 	main="Item Information")
-   abline(v=input$master2) 
+   abline(v=input$master3) 
    })
 }
 shinyApp(ui=ui,server=server)
@@ -76,5 +77,5 @@ The item information function is
 $$I(\theta) = a_j^2 D^2 \frac{p(\theta)-c_j)^2 q(\theta)}{(1-c_j)^2p(\theta)} \ , $$
 
 where $p(\theta)=P(X=1|\theta,b_j)$ and $q(\theta)=1-p(\theta)$ and
-$D$ is 1.7 for the 1PL model and 1 for the Rasch model, and $a_j$ is
-the discrimination parameter, and $c_j$ is the guessing paramter.
+$D$ is 1.7 or 1, $a_j$ is
+the discrimination parameter, and $c_j$ is the guessing parameter.

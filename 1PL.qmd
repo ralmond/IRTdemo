@@ -60,7 +60,7 @@ $$ p(X|\theta_i,b_j) = \text{logit}^{-1} \left ( 1.7 a(\theta_i - b_j) \right ) 
 
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 600
+#| viewerHeight: 1000
 library(shiny)
 library(arm)
 ui <- fluidPage(
