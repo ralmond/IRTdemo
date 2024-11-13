@@ -1,0 +1,46 @@
+project:
+  type: website
+
+website:
+  title: "IRT Demonstration Widgets"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: "Dichotomous Models"
+        menu: 
+          - text: "One parameter and Rasch Models"
+            href: 1PL.qmd
+          - text: "Two parameter Logistic and Normal Olgive"
+            href: 2PL.qmd
+          - text: "Three parameter: guessing parameter"
+            href: 3PL.qmd
+          - text: "Four parameter: guessing and slipping"
+            href: 4PL.qmd
+      - text: "Polytomous Models"
+        menu:
+          - text: "Graded Response"
+            href: GradedResponse.qmd
+          - text: "Partial Credit"
+            href: PartialCredit.qmd
+      - text: "Special Models"
+        menu: 
+          - text: "Nominal Response Model"
+            href: nominal.qmd
+          - text: "Unfolding Model"
+            href: Unfolding.qmd
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    filters:
+      - shinylive
+      
+margin-header: |
+  ![FSU-EPLS](/img/SM-White.svg)
+
+
+
