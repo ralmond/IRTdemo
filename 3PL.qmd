@@ -17,6 +17,10 @@ $$ p(X|\theta_i,a_j, b_j, c_j) = c_j + (1-c_j)\text{logit}^{-1} \left ( 1.7 a_j(
 
 The parameter $c_j$ is called the guessing parameter.
 
+This is intended for use with multiple choice questions, were $c_j$ is one over the number of options.  This becomes the _lower asymptote_ for the logistic curve.
+
+
+
 
 ```{shinylive-r}
 #| standalone: true
@@ -79,3 +83,7 @@ $$I(\theta) = a_j^2 D^2 \frac{p(\theta)-c_j)^2 q(\theta)}{(1-c_j)^2p(\theta)} \ 
 where $p(\theta)=P(X=1|\theta,b_j)$ and $q(\theta)=1-p(\theta)$ and
 $D$ is 1.7 or 1, $a_j$ is
 the discrimination parameter, and $c_j$ is the guessing parameter.
+
+3PL models are less stable than 1PL or 2PL models.  This has two consequences.  First, fitting 3PL models needs much larger sample sizes.  Second, it often helps to put a prior distribution (around one over the number of options) to help stabilizes the estimates.
+
+Note that the MIRT package has an alternative 3PL model where the extra parameters is an upper asymptote, although I have not seen that used.
